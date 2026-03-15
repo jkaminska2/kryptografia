@@ -1,45 +1,3 @@
-def main():
-    cipher = ""
-    while cipher not in ["c", "a"]:
-        print("Wybierz szyfr:")
-        print("c - szyfr Cezara")
-        print("a - szyfr afiniczny")
-        cipher = input()
-        if cipher not in ["c", "a"]:
-            print("Niepoprawny wybór szyfru.")
-
-    option = ""
-    while option not in ["e", "d", "j", "k"]:
-        print("Wybierz opcje:")
-        print("e - szyfrowanie")
-        print("d - odszyfrowywanie")
-        print("j - kryptoanaliza z tekstem jawnym")
-        print("k - kryptoanaliza wyłącznie w oparciu o kryptogram")
-        option = input()
-        if option not in ["e", "d", "j", "k"]:
-            print("Niepoprawny wybór opcji.")
-
-    if cipher == "c":
-        if option == "e":
-            caesar_encrypt()
-        elif option == "d":
-            caesar_decrypt()
-        elif option == "j":
-            caesar_cryptanalysis()
-        else:
-            caesar_cryptanalysis_brute_force()
-    else:
-        if option == "e":
-            affine_encrypt()
-        elif option == "d":
-            affine_decrypt()
-        elif option == "j":
-            affine_cryptanalysis()
-        else:
-            affine_cryptanalysis_brute_force()
-
-    print("Odpowiedzi znajduja sie w plikach.")
-
 def nwd(x, y):
     while y != 0:
         temp = y
@@ -226,3 +184,47 @@ def affine_cryptanalysis_brute_force():
                     else:
                         decrypt.write(char)
                 decrypt.write("\n")
+
+def main():
+    cipher = ""
+    while cipher not in ["c", "a"]:
+        print("Wybierz szyfr:")
+        print("c - szyfr Cezara")
+        print("a - szyfr afiniczny")
+        cipher = input()
+        if cipher not in ["c", "a"]:
+            print("Niepoprawny wybór szyfru.")
+
+    option = ""
+    while option not in ["e", "d", "j", "k"]:
+        print("Wybierz opcje:")
+        print("e - szyfrowanie")
+        print("d - odszyfrowywanie")
+        print("j - kryptoanaliza z tekstem jawnym")
+        print("k - kryptoanaliza wyłącznie w oparciu o kryptogram")
+        option = input()
+        if option not in ["e", "d", "j", "k"]:
+            print("Niepoprawny wybór opcji.")
+
+    if cipher == "c":
+        if option == "e":
+            caesar_encrypt()
+        elif option == "d":
+            caesar_decrypt()
+        elif option == "j":
+            caesar_cryptanalysis()
+        else:
+            caesar_cryptanalysis_brute_force()
+    else:
+        if option == "e":
+            affine_encrypt()
+        elif option == "d":
+            affine_decrypt()
+        elif option == "j":
+            affine_cryptanalysis()
+        else:
+            affine_cryptanalysis_brute_force()
+
+    print("Odpowiedzi znajduja sie w plikach.")
+
+main()
