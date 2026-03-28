@@ -1,3 +1,10 @@
+# Autor: Joanna Kaminska
+
+import sys
+args = sys.argv[1:]
+szyfr = None
+tryb = None
+
 def nwd(x, y):
     while y != 0:
         temp = y
@@ -20,7 +27,7 @@ def caesar_encrypt():
                 w.write(char)
 
 def caesar_decrypt():
-    with open("plain.txt", "w") as w, open("crypto.txt", "r") as file1, open("key.txt", "r") as file2:
+    with open("decrypt.txt", "w") as w, open("crypto.txt", "r") as file1, open("key.txt", "r") as file2:
         text = file1.read()
         key = int(file2.read().split()[0]) % 26
         for char in text:
@@ -90,7 +97,7 @@ def affine_encrypt():
                 encrypt.write(char)
 
 def affine_decrypt():
-    with open("crypto.txt", "r") as encrypt, open("plain.txt", "w") as decrypt, open("key.txt", "r") as key:
+    with open("crypto.txt", "r") as encrypt, open("decrypt.txt", "w") as decrypt, open("key.txt", "r") as key:
         text = encrypt.read()
         a_str, b_str = key.read().split()
         a = int(a_str)
@@ -108,8 +115,8 @@ def affine_decrypt():
                 decrypt.write(char)
 
 def affine_cryptanalysis():
-    with open("plain.txt", "r") as plain, open("key-found.txt", "w") as key, open("decrypt.txt", "w") as decrypt, open("crypto.txt", "r") as encrypt:
-        text = plain.read()
+    with open("extra.txt", "r") as extra, open("key-found.txt", "w") as key, open("decrypt.txt", "w") as decrypt, open("crypto.txt", "r") as encrypt:
+        text = extra.read()
         encrypted = encrypt.read()
         a = None
         b = None
@@ -186,43 +193,23 @@ def affine_cryptanalysis_brute_force():
                 decrypt.write("\n")
 
 def main():
-    cipher = ""
-    while cipher not in ["c", "a"]:
-        print("Wybierz szyfr:")
-        print("c - szyfr Cezara")
-        print("a - szyfr afiniczny")
-        cipher = input()
-        if cipher not in ["c", "a"]:
-            print("Niepoprawny wybór szyfru.")
-
-    option = ""
-    while option not in ["e", "d", "j", "k"]:
-        print("Wybierz opcje:")
-        print("e - szyfrowanie")
-        print("d - odszyfrowywanie")
-        print("j - kryptoanaliza z tekstem jawnym")
-        print("k - kryptoanaliza wyłącznie w oparciu o kryptogram")
-        option = input()
-        if option not in ["e", "d", "j", "k"]:
-            print("Niepoprawny wybór opcji.")
-
-    if cipher == "c":
-        if option == "e":
+    if "-c" in args:
+        if "-e" in args:
             caesar_encrypt()
-        elif option == "d":
+        elif "-d" in args:
             caesar_decrypt()
-        elif option == "j":
+        elif "-j" in args:
             caesar_cryptanalysis()
-        else:
+        elif "-k" in args:
             caesar_cryptanalysis_brute_force()
-    else:
-        if option == "e":
+    elif "-a" in args:
+        if "-e" in args:
             affine_encrypt()
-        elif option == "d":
+        elif "-d" in args:
             affine_decrypt()
-        elif option == "j":
+        elif "-j" in args:
             affine_cryptanalysis()
-        else:
+        elif "-k" in args:
             affine_cryptanalysis_brute_force()
 
     print("Odpowiedzi znajduja sie w plikach.")
