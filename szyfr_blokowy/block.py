@@ -1,5 +1,7 @@
+# Autor: Joanna Kamińska
+
 from PIL import Image
-import hashlib
+import hashlib # md5 only
 
 def md5_block(block):
     block_bytes = bytes(block)
@@ -42,6 +44,7 @@ for l in range(len(cipher_blocks)):
                 index += 1
 
 output_img.save("ecb_crypto.bmp")
+
 output_img = Image.new("L", (width, height))
 output_pixels = output_img.load()
 
