@@ -1,3 +1,5 @@
+# Autor: Joanna Kamińska
+
 import hashlib
 
 def generate_hashes():

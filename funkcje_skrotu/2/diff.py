@@ -1,3 +1,5 @@
+# Autor: Joanna Kamińska
+
 import hashlib
 
 PERSONAL = "personal.txt"
