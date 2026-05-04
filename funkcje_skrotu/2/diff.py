@@ -5,6 +5,7 @@ import hashlib
 PERSONAL = "personal.txt"
 PERSONAL2 = "personal_.txt"
 DIFFFILE = "diff.txt"
+HASHFILE = "hash.txt"
 LECTURE = "hash-.pdf"
 
 HASH_FUNCS = [
@@ -33,6 +34,12 @@ def main():
     lecture = read_file(LECTURE)
     p1 = read_file(PERSONAL)
     p2 = read_file(PERSONAL2)
+
+    with open(HASHFILE, "w") as hf:
+        for name, func, bits in HASH_FUNCS:
+            h1 = compute_hash(func, lecture + p1)
+            h2 = compute_hash(func, lecture + p2)
+            hf.write(f"{h1}\n{h2}\n")
 
     with open(DIFFFILE, "w", encoding="utf-8") as out:
         for name, func, bits in HASH_FUNCS:
